@@ -29,7 +29,7 @@ class PurePursuitNode(Node):
     def __init__(self):
         super().__init__("pure_pursuit_node")
 
-        self.declare_parameter("lookahead_distance", 1.5)
+        self.declare_parameter("lookahead_distance", 10)
         self.lookahead_distance = (
             self.get_parameter("lookahead_distance").get_parameter_value().double_value
         )
@@ -51,7 +51,7 @@ class PurePursuitNode(Node):
         self.current_pose = None
         self.current_waypoint_index = 0
         self.arrival_threshold = 0.5  # meters
-        self.speed = 1.5  # Target speed
+        self.speed = 5  # Target speed
         self.actual_speed = 0.0
 
         self.create_subscription(Odometry, "/ego_racecar/odom", self.odom_callback, 10)
@@ -87,6 +87,10 @@ class PurePursuitNode(Node):
             self.get_logger().info(
                 f"Reached waypoint {self.current_waypoint_index - 1}, moving to {self.current_waypoint_index}"
             )
+            # Publish the updated waypoint index
+            index_msg = Int32()
+            index_msg.data = self.current_waypoint_index
+            self.wp_index_pub.publish(index_msg)
             return  # wait until next cycle
 
         steering_angle = self.compute_steering_angle(target_wp)

@@ -15,6 +15,13 @@ This package implements a Pure Pursuit path tracking algorithm for autonomous ve
 
 ## Usage
 
+**Reminder**: Always run the following commands before using this package:
+
+```bash
+source /opt/ros/galactic/setup.bash
+cd autoware && . install/setup.bash
+```
+
 - Launch the nodes using the provided launch file:
   ```bash
   ros2 launch pure_pursuit_controller pure_pursuit.launch.py
