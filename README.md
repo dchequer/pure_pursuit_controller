@@ -11,7 +11,7 @@ This package implements a Pure Pursuit path tracking algorithm for autonomous ve
 ## Installation
 
 1. Clone the repository into your ROS 2 workspace.
-2. Build the workspace using `colcon build`.
+2. Build the workspace using `colcon build --packages-select pure_pursuit_controller`.
 
 ## Usage
 
@@ -19,8 +19,9 @@ This package implements a Pure Pursuit path tracking algorithm for autonomous ve
   ```bash
   ros2 launch pure_pursuit_controller pure_pursuit.launch.py
   ```
-- Record waypoints by clicking 2D Goal Pose in RViz.
+- Record waypoints by clicking 2D Goal Pose in RViz. (TODO: currently you need to manually run "waypoint_recorder")
 - Visualize waypoints and track the path in real-time.
+- Send commands to car to drive.
 
 ## Dependencies
 
